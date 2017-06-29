@@ -190,7 +190,6 @@ int need_graft_path(struct dentry *dentry)
 	struct dentry *parent = dget_parent(dentry);
 	struct sdcardfs_inode_info *parent_info= SDCARDFS_I(parent->d_inode);
 
-//#2016/09/16, Add for sovle bugid852335 mkdir -p /storage/sdcard1/Android/obb,it's going to die
 //Reference C7 code
 /*
 	if(parent_info->perm == PERM_ANDROID &&
@@ -198,14 +197,12 @@ int need_graft_path(struct dentry *dentry)
 		ret = 1;
 	}
 */
-//#else
 	struct sdcardfs_sb_info *sbi = SDCARDFS_SB(dentry->d_sb);
 	if(parent_info->perm == PERM_ANDROID &&
 			!strcasecmp(dentry->d_name.name, "obb") &&
 			sbi->options.multi_user) {
 		ret = 1;
 	}
-//#endif
 	dput(parent);
 	return ret;
 }

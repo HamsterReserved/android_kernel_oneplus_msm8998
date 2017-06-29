@@ -686,7 +686,6 @@ static int sdcardfs_permission(struct inode *inode, int mask)
 
 }
 
-//2017/03/18, fix dir uid after rename
 static char attr_buf[PATH_MAX] = {0};
 
 static int sdcardfs_getattr(struct vfsmount *mnt, struct dentry *dentry,
@@ -697,7 +696,6 @@ static int sdcardfs_getattr(struct vfsmount *mnt, struct dentry *dentry,
 	struct inode *lower_inode;
 	struct path lower_path;
 	struct dentry *parent;
-//2017/03/18, fix dir uid after rename
 	char *path;
 
 	parent = dget_parent(dentry);
@@ -708,7 +706,6 @@ static int sdcardfs_getattr(struct vfsmount *mnt, struct dentry *dentry,
 		dput(parent);
 		return -EACCES;
 	}
-//2017/03/18, fix dir uid after rename
 	if (parent->d_inode && SDCARDFS_I(parent->d_inode)->d_uid == 0 && SDCARDFS_I(dentry->d_inode) != 0) {
 		path = dentry_path_raw(dentry, attr_buf, PATH_MAX);
 		if (!IS_ERR(path) && strstr(path, "com.example.does.not.exist")) {
