@@ -339,6 +339,9 @@ typedef struct sLimTimers {
 	 */
 	TX_TIMER open_sys_auth_timer;
 
+	/* SAE authentication related timer */
+	TX_TIMER sae_auth_timer;
+
 /* ********************TIMER SECTION ENDS************************************************** */
 /* ALL THE FIELDS BELOW THIS CAN BE ZEROED OUT in lim_initialize */
 /* **************************************************************************************** */
