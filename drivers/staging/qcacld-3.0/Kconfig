@@ -144,4 +144,12 @@ config WLAN_FEATURE_FILS
 	bool "Enable FILS_SK feature"
 	default n
 
+config WLAN_FEATURE_OWE
+    bool "Enable OWE (Opportunistic Wireless Encryption, used in WPA3)"
+    default n
+
+config WLAN_FEATURE_SAE
+    bool "Enable SAE (Simultaneous Authentication of Equals, used in WPA3)"
+    default n
+
 endif # QCA_CLD_WLAN
